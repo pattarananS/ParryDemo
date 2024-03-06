@@ -3,19 +3,22 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - block
+  - parry
+  - parryslash
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ground
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - projectile
+  - sword
+  - slash
+  - Agent
   - 
   - 
   - 
