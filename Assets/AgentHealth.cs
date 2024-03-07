@@ -5,11 +5,15 @@ using UnityEngine;
 public class AgentHealth : MonoBehaviour
 {
     public CentralModifier cm;
-    public float hp;
-    public float maxHp = 100;
+    [SerializeField] float hp;
+    [SerializeField] float maxHp = 100;
+    [SerializeField] GameObject blood;
+
+    [SerializeField] HealthBar hpBar;
     // Start is called before the first frame update
     void Start()
     {
+        hpBar = GetComponentInChildren<HealthBar>();
         cm = FindObjectOfType<CentralModifier>();
         hp = maxHp;
     }
@@ -21,10 +25,23 @@ public class AgentHealth : MonoBehaviour
     }
     void OnTriggerEnter(Collider col)
     {
+        
+        //REDUCE HEALTH WHEN COLLISION WITH SLASHES
         if(col.tag == "parryslash" )
         {
+            Instantiate(blood, transform.position, Quaternion.identity);
             hp = hp - cm.parrySlashDamage;
         }
+
+        //REDUCE HEALTH WHEN COLLISION WITH NORMAL ATTACK
+        if(col.tag == "nmAttack" )
+        {
+            Instantiate(blood, transform.position, Quaternion.identity);
+            Debug.Log("hit");
+            hp = hp - cm.normalAttackDamage;
+        }
+
+        hpBar.UpdateHealthBar(hp, maxHp);
 
         if(hp <= 0)
         {

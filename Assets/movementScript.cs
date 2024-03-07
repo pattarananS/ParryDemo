@@ -9,7 +9,7 @@ public class movementScript : MonoBehaviour
     
     //walk
     public CharacterController controller;
-    [SerializeField] float speed = 6f;
+    public float speed = 6f;
     [SerializeField] float turnSmoothTime = 0.1f; 
     [SerializeField] Transform cam;
     float turnSmoothVelocity;
@@ -31,10 +31,8 @@ public class movementScript : MonoBehaviour
         Cursor.visible = false; 
         Cursor.lockState = CursorLockMode.Locked;
 
-        
+        //JUMP
         isGrounded = Physics.CheckSphere(GroundCheck.position, GroundDistance, GroundMask);
-        //jump
-        //isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
         if (isGrounded && velocity.y < 0)
         {
@@ -46,7 +44,7 @@ public class movementScript : MonoBehaviour
             velocity.y = Mathf.Sqrt(jumpHeight * -1 * gravity);
         }
 
-        //sprint
+        //SPRINT
         if(Input.GetKey("left shift"))
         {
             speed = 25;
@@ -55,18 +53,18 @@ public class movementScript : MonoBehaviour
             speed = 15;
         }
 
-        //gravity
+        //GRAVITY OF JUMP
         velocity.y += gravity * 10f * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
 
-        //walk
+        //WALK
         float horizontal = Input.GetAxisRaw("Horizontal"); 
         float vertical = Input.GetAxisRaw("Vertical"); 
         Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
 
         if(direction.magnitude >= 0.1f)
         {
-            //direction
+            //WALK DIRECTION
             float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
@@ -76,6 +74,11 @@ public class movementScript : MonoBehaviour
             controller.Move(moveDir.normalized * speed * Time.deltaTime);
         }
         
+    }
+    ///LOAD LEVEL METHOD
+    void LoadLv()
+    {
+        Application.LoadLevel("SampleScene");
     }
 
     

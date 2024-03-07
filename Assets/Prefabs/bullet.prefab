@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -7419646888748375595}
   m_Layer: 7
   m_Name: bullet
-  m_TagString: Untagged
+  m_TagString: enemyProjectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -148,3 +148,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spark: {fileID: 8965907270723211990, guid: 810b31f75b21c7a45abdbedcc1ae2a12, type: 3}
   spark2: {fileID: 8965907270723211990, guid: 6542370bdb79c4d43abc88032ef5904d, type: 3}
+  sh: {fileID: 0}
+  ss: {fileID: 0}

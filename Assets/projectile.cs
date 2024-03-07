@@ -17,7 +17,14 @@ public class projectile : MonoBehaviour
 
     void Update()
     {
-        
+        Destroy(gameObject,3f);
+    }
+    void OnTriggerEnter (Collider coll)
+    {
+        if(coll.tag == "PlayerDMGReciever" )
+        {
+            Destroy(gameObject);
+        }
     }
     void OnCollisionEnter(Collision col)
     {

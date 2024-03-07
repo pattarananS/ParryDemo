@@ -35,13 +35,14 @@ public class AgentMovement : MonoBehaviour
         playerInsightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttacRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
 
+        //ACTION LOGIC
         if(!playerInsightRange && !playerInAttacRange) Patrolling();
         if(playerInsightRange && !playerInAttacRange) ChasePlayer();
         if(playerInAttacRange && playerInsightRange) AttackPlayer();
     }
 
 
-    //patrolling
+    //PPATROLLING
     private void Patrolling()
     {
         if(!walkPointSet) SearchWalkPoint();
@@ -60,7 +61,8 @@ public class AgentMovement : MonoBehaviour
 
     }
     private void SearchWalkPoint()
-    {
+    {   
+        //RANDOMIZED WALK POINT
         float randomZ = Random.Range(-walkPointRange, walkPointRange);
         float randomX = Random.Range(-walkPointRange, walkPointRange);
 
@@ -71,20 +73,18 @@ public class AgentMovement : MonoBehaviour
             walkPointSet = true;
         }
     }
-    //chaseplayer
+    //CHASE PLAYER METHOD
     private void ChasePlayer()
     {
         agent.SetDestination(player.position);
     }
 
-    //attackplayer
+    //ATTACK METHOD
     private void AttackPlayer()
     {
         agent.SetDestination(transform.position);
         transform.LookAt(player);
 
-
-        //attack
 
 
         if(!alreadyAttacked)
@@ -94,6 +94,7 @@ public class AgentMovement : MonoBehaviour
             rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
             rb.AddForce(transform.up * 4f, ForceMode.Impulse);
 
+            ///ATTACK COOLDOWN
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttack);
         }

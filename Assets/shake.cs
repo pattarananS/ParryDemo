@@ -27,7 +27,7 @@ public class shake : MonoBehaviour
             anim.SetBool("isShaking",false);
         }
         shakeDur -= 9f * Time.deltaTime;
-        Debug.Log(shakeDur);
+        //Debug.Log(shakeDur);
         
     }
 }

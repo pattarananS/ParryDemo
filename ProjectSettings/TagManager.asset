@@ -7,6 +7,9 @@ TagManager:
   - block
   - parry
   - parryslash
+  - nmAttack
+  - enemyProjectile
+  - PlayerDMGReciever
   layers:
   - Default
   - TransparentFX
@@ -19,7 +22,7 @@ TagManager:
   - sword
   - slash
   - Agent
-  - 
+  - PlayerReciever
   - 
   - 
   - 

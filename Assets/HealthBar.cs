@@ -6,18 +6,16 @@ using UnityEngine.UI;
 public class HealthBar : MonoBehaviour
 {
     [SerializeField] private Slider slider;
-    public AgentHealth agentHp; 
     //[SerializeField] private Transform target;
     //[SerializeField] private Camera camera;
 
-    void Start()
+    public void UpdateHealthBar(float currentValue, float maxValue)
     {
-        agentHp = FindObjectOfType<AgentHealth>();
+        slider.value = currentValue/maxValue;
     }
     // Update is called once per frame
     void Update()
     {
-        slider.value = agentHp.hp / agentHp.maxHp;
 
         //transform.rotation = camera.transform.rotation;
         //transform.position = target.position;
